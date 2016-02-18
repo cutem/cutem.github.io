@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>CTF 杂谈</title>
+    
+    <meta name="author" content="EvilMoon">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes//bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes//bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes//bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link href="/assets/themes//css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">EvilMoon's Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div class="container">
+        
+<div class="page-header">
+  <h1>CTF 杂谈 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>18 February 2016</span>
+    </div>
+    <div class="content">
+      
+<ul>
+  <li>本文全篇无技术，纯对自己谈心。<del>一个走心的 boy 。</del></li>
+</ul>
+
+<p>这两年来都在打 CTF，而我主要负责 Web 这块的东西，所以稍微谈谈吧。Web 安全是一个大家十分熟悉的东西。我们一直在说它，也在做，但是从来没有一个明确的定义。但是做着做着发现各种方向的安全在今天已经糅杂在一起了，导致它无法有一个很明确的定义，同时 Web 安全有它的特殊性，所以更难给出一个定义。在出世入世的过程中，我需要对我自己所学所做的东西进行一个整理归类，算是给自己一个交代吧。<del>所以先探讨一下在我看来的 Web 安全到底是什么？</del> 不妨探讨下至少在我看来在 CTF 中 Web 安全的内容应该是什么？</p>
+
+<h3 id="security-of-traditional-website">Security of traditional website</h3>
+<p>在 Web 安全中有一个很重要的场景就是网站。所以我姑且把围绕网站的各个方面称为狭义的 Web 安全。在 CTF 中，很多 web 题目的场景就是以网站形式展现的，而所用的语言也是大家所熟悉的 PHP 。在围绕网站展开的许多安全问题就不一一阐述了，毕竟这不是一篇讲技术的文章（严肃脸）。</p>
+
+<p>挑出几个非常经典的东西来说，如：SQL Injection，台湾友人如是说：「SQL Injection 也是在玩 SQL 不是玩 Web 阿」。正因为 SQL Injection 在 Web 中是一个比较常见的安全问题，所以我们姑且认为它属于 Web 安全范畴。按理说 SQL Injection 是一个后端处理用户输入时的问题，而且实现上是用的 Web 相关的脚本导致出的问题，所以归纳到 Web 安全似乎无可厚非，同时 SQL Injection 也是数据被当成代码执行了。暂且放下 CTF ，现实很悲伤的，而悲伤又那么大。很多情况下网站出现的问题是在人身上，比如：弱口令。弱口令是只存在在 Web 上的安全问题吗？当然不是，它本质也是一个人员安全意识的问题或是一种对安全没有全局的考虑（如 1qaz@WSX 这类密码的出现），甚至多数上传漏洞也都是人员安全意识所导致的。但是它们在 Web 层面上出现的频次实在太高，所以很多情况下它也被列入 Web 安全问题之中。但是再仔细想想，如果是围绕网站后端或者人员的问题来展开的话，那问题就太广了，或者再次思考，上传漏洞只会出现在 Web 中么？所以再把视线回到前端上来。</p>
+
+<p>让我们来做一个推理，这里有几个公认的点，一、 JavaScript 的用途基本上都是在浏览器上。二、浏览器上能看到的东西几乎都是 Web 的东西。所以我们就可以推出 JavaScript 相关的安全都是 Web 安全，如 XSS 等。但是， JavaScript 安全本身也是可能更多的是语言奇奇怪怪的特性，同理 PHP 的一些 Trick 所产生的安全问题也是可以列为语言安全的问题，只是因为他们应用在了 Web 这个概念中，所以它们大多是情况下都被称为 Web 安全问题，当然也有许多解释器出的问题了，但是暂时不放在讨论范围内。所以我们简单的可以得到，与网站体系相关的安全问题，只要场景出现频次够高都可以把这些问题归类为 Web 安全。这些是我们常见的 Web 安全，同时也是 CTF 中常见的场景。</p>
+
+<h3 id="security-about-web">Security About Web</h3>
+
+<p>在我看来安全是一个整体 <del>（废话，在大家看来也是</del>。所以 Web 安全到底是什么呢？我所理解的在很多人看来的 Web 安全更是注重技巧与思路，将许多现成的应用现有的功能串起来用，拿 SQL Injection 来说好了，本质都是查询，只是被注入的恶意的数据，XSS 亦是如此 — 数据被当成代码执行了 。而经典的 PHP 的各种 Trick 在 CTF 中的应用也是利用语言的各种特性来作出一些看似 impossible 变成了 <del>im</del>possible 。广义来看， JS 在各种浏览器中的利用从而破坏内存，那么这些漏洞算不算 Web 安全的范畴呢？在来 CTF 中的 「 Web 安全 」与 「 二进制安全 」大多数的区别在于内存是否被破坏。在 CTF 中大多数 Pwn 的题目都是<b>内存破坏</b>的漏洞，而我们口中所说的 Web 安全很多是使用语言自身的「 Gadget 」或「 feature 」，总的来说就是找的「 Gadget 」粒度更粗。所以我们是不是可以很开心的说只要不是内存破坏型的漏洞且与网站相关都是 Web 安全相关的问题了呢，或者说只要用的「 Gadget 」粒度细腻到指令级别的就是与 Web 安全无关了。但是（人生最精彩的就是这个但是），也有许多软件漏洞并不用去破坏内存，而选择了也利用一些应用的 feature 来实现一些奇奇怪怪的目的。所以到这里我们似乎已经模糊了安全的分类，除了一点 Web 安全一定和网站相关。但是想想也不一定<del>（精分的我）</del>，因为网站本身也是走的 socket ，也是一个个网络包。假设一个 App 存在越权漏洞，只是他不是走的 HTTP 协议，而是一个个二进制的数值，但是通过修改某个位则能产生越权，这算不算 Web 安全问题？如果再往下想，Web 安全也是软件实现上的问题，所以是不是也算 Binary 的问题呢？不敢再想了，感觉已经迷茫了。所以说 Web 安全到底是什么呢？我只能说现在的我也无法定义，我只能说 Web 很多情况下被鄙视是因为可能大家有很多有(wei)趣(suo)的思路，但许多做 Web 安全的缺乏一些基本功。而 binary 选手大多数情况下是付出了很多辛勤的汗水，看了许多的基础知识，从而赢得了大家的认可。不可否认思路还是很重要，所以这个思路就是那 1% 的灵感，要想赢得尊敬与掌声当然也少不了那 99% 的汗水，但是两个是一样重要的呢，我看来很多 exploit 是充满艺术性的。所以，米那桑，要加油哦。</p>
+
+<p>下面这一段是写给 CTF 出题者看的。</p>
+
+<p>虽然一切似乎都没有严格的边界，但是探究东西最重要的就是假设，先把自己圈在一个圈子里然后再考虑如何跳出那个圈子。所以忘掉上面的废话吧，让我们做个基础假设。Web 安全是围绕网站所产生的安全问题。所要做的应该是不拘于物，不要执着于语言或者展现形式。Web 安全能出成什么样，你知道 PHP 能写网站，所以你也应该知道 Python、Perl、Ruby 都能写网站吧？而且 C 语言也是能写网站的。。。所以 Web 的题目不要拘泥于脑洞啦。你用一个网站搞个 Pwn 的题目也算 Web 安全的。毕竟 PHP 也被刷了不少 UAF 的洞呢。Web 不过是一个展现形式更直接的入口。然而也不一定非要在比赛的平台、环境上创新，如果有什么新的 Trick 还是在某些特定的大家熟悉的环境下搭建会好一点，毕竟大家都是来学东西的。</p>
+
+<p>BTW，说来也有意思，大家喊了几年的技术越来越封闭，大家越来越不愿意交流之类的，反而是在 CTF 的竞技中，大家开始了交流与分享，有许多业内前辈问 CTF 的意义在哪里？这何尝不是安全行业的一股新风吗？交流与分享，不正是你们所追求的行业状态么？<del>(这盛世，正如你所愿。（（大雾</del></p>
+
+<h3 id="section">方与圆</h3>
+
+<p>中国有句老话叫：<del>闷声发大财</del> 妹有规矩不成方圆。实则说的是一个边界的问题，做事还是得定一个边界。正如上面讨论的 Web 安全与二进制安全的区别在哪里？很难，但是还是有一个隐含的边界。再究其安全研究的方法论，当然也需要一个边界的东西存在。</p>
+
+<h3 id="section-1">爱与希望</h3>
+
+<p>有什么能拯救世界呢？我想那就叫做爱吧。有什么能触发漏洞，我想那就是数据吧。当我们在渗透的时候我们在做什么？我想也许就是信息的收集与归纳吧，渗透是一个关于数据的艺术。一旦你收集的信息达到 100% 那似乎已经就成功咯。而渗透过程中，Web 一直是一个很好的突破口，而当我们在讨论 Web 安全的时候我们在讨论什么？当你希望渗透一个企业的时候，假设一个注入就能拿到所有的数据，或者一个简单的上传漏洞就能拿到 webshell ，大多数情况下（包括许多本身做渗透的人）都会说：“啊不就是 xxx 漏洞，没什么技术含量。”可曾想过，这个「漏洞」是做了多少前期准备工作，与二进制类似，也许有个很简单的漏洞，但是在茫茫的汇编中，你如何去定位，如何去触发，如何去绕过保护机制。也许这个注入是想了多种办法绕过 waf 的。我相信，所有成果都值得大家尊重。大家都有自己的一套方法论，去做事去挖洞，只是场景不同，并不存在什么高低之分。正如 fc 所说：note 很多，但是方法论很少。有人的地方就有江湖，有人心就有高低。在 xisigr 那看到一句话：文玩无贵贱，人心有高低。漏洞不也正是如此吗？即「漏洞无贵贱，人心有高低。」一切皆看场景，一个 xss 可能都比 rce 好用。因为安全多数情况下都是目的驱动的，故此目的是什么很关键，好似钓鱼网站还能骗到不少人呢。所以说对于一个诈骗集团来说是 xss 好用还是 rce 好用呢？一个不对称的游戏，安全如此，以小搏大。大千世界亦是如此，一朵花中见世界，是以小见大，xss 胜过 rce 是以小搏大。有趣，好玩。</p>
+
+<p>希望在哪里？在于爱啊，Hacking for fun ，热爱安全，脚踏实地的去研究。</p>
+
+<p>作为一个即将毕业的学生，我见得太多啦，可以告诉学弟学妹们一点人生道理，中国人有句老话说话叫「磨刀不误砍材工」还有一句话叫「勤能补拙」，不要老想着搞一个大新闻，先好好踏实修炼内功，做一个靠谱的有逻辑的人。虽然老生常谈，但是还是要多说几次，脚踏实地，脚踏实地，脚踏实地。</p>
+
+<h3 id="section-2">方法于做事</h3>
+
+<p>做事都要有逻辑，这是当然。挖洞也要有逻辑（并不），挖洞的过程中经常会出现一些很诡异的现象，虽然也是存在的比较深的逻辑的，但是从现象来看分明就是玄学嘛。虽然如此，也不要忘记了要多调漏洞，学习新的姿势。四哥说：<code>看别人的分析时，有条件了最好实操一遍，收获会明显不同。有些初学者喜欢看，觉得跟着做没意义，不然。</code> 我深以为然。</p>
+
+<h3 id="be-happy">Be happy</h3>
+
+<p>做自己喜欢的研究，一切研究都是有意义的，你不知道在哪天就会用上了。多积累漏洞，勿洞小而不挖。毕竟还是那句「漏洞无贵贱，人心有高低。」</p>
+
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#life-ref">
+    		life <span>1</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#CTF-ref">CTF <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Security-ref">Security <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#talk-ref">talk <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev disabled"><a>&larr; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next disabled"><a>Next &rarr;</a>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'cutem'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2016 EvilMoon
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+
+    
+
+
+
+
+
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes//bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
