@@ -8,4 +8,5 @@ http://emis.me/rss.xml
 http://emis.me/sitemap.txt
 http://emis.me/tags
 
+http://emis.me/writeup/2016/02/22/zctf-note1
 http://emis.me/life/2016/02/18/ctf-za-tan
